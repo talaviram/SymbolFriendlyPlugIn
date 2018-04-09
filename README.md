@@ -105,6 +105,7 @@ So in-order to symbolicate and address here is an example:
 Would result:
 
     juce::AudioProcessorPlayer::audioDeviceIOCallback(float const**, int, float**, int, int) (in SymbolFriendlyPlugIn) (juce_AudioProcessorPlayer.cpp:163)
+    
     SymbolFriendlyPlugInAudioProcessor::processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) (in SymbolFriendlyPlugIn) (PluginProcessor.cpp:135)
 
 One thing our example doesn't include is the architecture. we run this example on Intel/AMD x64 arch. However, if our user (and product) was from another architecture (such as iOS ARM x64 or i386/32-bit x86) then we would also mention the architecture which is also important. using the `--arch` .
@@ -117,7 +118,9 @@ In order to obtain a crashlog (or in MS terms - dump or minidump) is by the cras
 
 It requires more work from the user but will be very useful.
 
-1. make sure not to close the crashed process (application).
-2. open Task Manager (ctrl+alt+del)
-3. select the process that got crashed and right click on it.
-4. select `Create dump file`.
+1. Make sure not to close the crashed process (application... your dll host).
+2. Open Task Manager (ctrl+alt+del)
+3. Select the process that got crashed and right click on it.
+4. Select `Create dump file`.
+
+This is the fail-safe way obtaining logs from users. but, it could make HUGE files unlike minidumps.
